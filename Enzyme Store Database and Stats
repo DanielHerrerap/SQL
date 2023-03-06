@@ -1,0 +1,28 @@
+First, I created a Enzyme store database and assigned the columns and their datatypes:
+CREATE TABLE Enzyme_store (id INTEGER PRIMARY KEY, name text, quantity INTEGER, price INTEGER);
+
+Then, I inserted various product names with their id's, quantity left and price:
+INSERT INTO Enzyme_store VALUES (1, "amylase", 40, 49);
+INSERT INTO Enzyme_store VALUES (2, "protease", 80, 39);
+INSERT INTO Enzyme_store VALUES (3, "pectinase", 71, 59);
+INSERT INTO Enzyme_store VALUES (4, "hemicellase", 51, 49);
+INSERT INTO Enzyme_store VALUES (5, "invertase", 37, 69);
+INSERT INTO Enzyme_store VALUES (6, "amyloglycosidase", 45, 29);
+INSERT INTO Enzyme_store VALUES (7, "glucose isomerase", 56, 49);
+INSERT INTO Enzyme_store VALUES (8, "lactase", 33, 39);
+INSERT INTO Enzyme_store VALUES (9, "xylanase", 87, 79); 
+INSERT INTO Enzyme_store VALUES (10, "phytase", 44, 89);
+INSERT INTO Enzyme_store VALUES (11, "cellulase", 22, 59);
+INSERT INTO Enzyme_store VALUES (12, "lipase", 67, 39);
+INSERT INTO Enzyme_store VALUES (13, "protease", 12, 89);
+INSERT INTO Enzyme_store VALUES (14, "streptokinase", 6, 99);
+INSERT INTO Enzyme_store VALUES (15, "catalase", 47, 49);
+
+How can we quickly view the most expensive products?
+SELECT * FROM Enzyme_store ORDER BY price DESC LIMIT 3;
+
+What is the average price of the products in the store?
+SELECT AVG(quantity) FROM Enzyme_store;
+
+Which items do we need to restock?
+SELECT * FROM Enzyme_store WHERE quantity < 40
