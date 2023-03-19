@@ -22,7 +22,7 @@ How can we quickly view the most expensive products?
 SELECT * FROM Enzyme_store ORDER BY price DESC LIMIT 3;
 
 What is the average price of the products in the store?
-SELECT AVG(quantity) FROM Enzyme_store;
+SELECT AVG(price) FROM Enzyme_store;
 
 Which items do we need to restock?
 SELECT * FROM Enzyme_store WHERE quantity < 40
