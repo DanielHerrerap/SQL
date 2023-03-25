@@ -1,0 +1,54 @@
+CREATE TABLE ninjas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER);
+
+INSERT INTO ninjas (fullname, age) VALUES ("Itachi Uchiha", "22");
+INSERT INTO ninjas (fullname, age) VALUES ("Naruto Uzumaki", "16");
+INSERT INTO ninjas (fullname, age) VALUES ("Sasuke Uchiha", "16");
+INSERT INTO ninjas (fullname, age) VALUES ("Shisui Uchiha", "26");
+INSERT into ninjas (fullname, age) VALUES ("Kakashi Hatake", "31");
+
+CREATE table hobbies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ninja_id INTEGER,
+    name TEXT);
+    
+INSERT INTO hobbies (ninja_id, name) VALUES (1, "training");
+INSERT INTO hobbies (ninja_id, name) VALUES (1, "relaxing");
+INSERT INTO hobbies (ninja_id, name) VALUES (2, "eating");
+INSERT INTO hobbies (ninja_id, name) VALUES (2, "playing");
+INSERT INTO hobbies (ninja_id, name) VALUES (3, "exercising");
+INSERT INTO hobbies (ninja_id, name) VALUES (3, "chilling");
+INSERT INTO hobbies (ninja_id, name) VALUES (3, "napping");
+INSERT INTO hobbies (ninja_id, name) VALUES (4, "training");
+INSERT INTO hobbies (ninja_id, name) VALUES (4, "eating");
+INSERT INTO hobbies (ninja_id, name) VALUES (4, "playing");
+INSERT INTO hobbies (ninja_id, name) VALUES (5, "reading");
+INSERT INTO hobbies (ninja_id, name) VALUES (5, "joking");
+
+CREATE table friends (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ninja1_id INTEGER,
+    ninja2_id INTEGER);
+
+INSERT INTO friends (ninja1_id, ninja2_id)
+    VALUES (1, 4);
+INSERT INTO friends (ninja1_id, ninja2_id)
+    VALUES (2, 3);
+INSERT INTO friends (ninja1_id, ninja2_id) VALUES (1,2);
+INSERT INTO friends (ninja1_id, ninja2_id) VALUES (1,5);
+INSERT INTO friends (ninja1_id, ninja2_id)
+VALUES (2,5);
+
+select ninjas.fullname, hobbies.name
+from ninjas
+join hobbies
+on ninjas.id = hobbies.ninja_id;
+
+SELECT a.fullname, b.fullname
+FROM friends
+JOIN ninjas a
+ON a.id = friends.ninja1_id
+JOIN ninjas b
+ON b.id = friends.ninja2_id;
