@@ -1,0 +1,55 @@
+-- For this project, I downloaded Spotify data from Kaggle.
+-- Then I created a table to insert Spotify data into.
+-- Finally, I performed analytics on the data using SQL. 
+
+-- Creating the table: 
+
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+-- Then I inserted the Spotify data into the table and explored it.
+
+select * from Spotifydata
+
+-- First i wanted to determine which 5 songs were the most popular, alongside the artist's name.
+select popularity, artist_name, track_name
+from Spotifydata
+order by popularity desc limit 5
+
+-- Then i wanted to figure out each of those artist's average popularity 
+select AVG(popularity), artist_name
+from Spotifydata
+where artist_name in ('Olivia Rodrigo', 'Ed Sheeran', 'Doja Cat', 'Glass Animals', 'Bad Bunny')
+group by artist_name
+
+-- Next i wanted to calculate the average popularity for the artists in the Spotify data table. 
+-- Then, for every artist with an average popularity of 90 or above, show their name, their 
+-- average popularity, and label them as a “Top Star”.
+
+with popularity_average_CTE as (
+select avg(s.popularity) as average_popularity, s.artist_name
+from Spotifydata s
+group by s.artist_name
+)
+
+select artist_name, average_popularity, 'Top Star' as tag
+from popularity_average_CTE
+where average_popularity >= 90;
